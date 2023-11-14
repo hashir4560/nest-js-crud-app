@@ -15,4 +15,16 @@ export class TodosService{
 
         return await this.todoRepository.save(todo)
 }
+
+        findMany(){
+            return this.todoRepository.find()
+}
+
+         async update(id:number,dto:CreateTodo   ){
+            const todo= await this.todoRepository.findOne({where:{id}})
+            //check that records exists 
+            
+            Object.assign(todo,dto)
+             return await this.todoRepository.save(todo);
+        }
 }
